@@ -4,7 +4,6 @@ const db = require("../db");
 const Reservation = require("./reservation");
 
 /** Customer of the restaurant. */
-
 class Customer {
   constructor({ id, firstName, lastName, phone, notes }) {
     this.id = id;
@@ -14,8 +13,12 @@ class Customer {
     this.notes = notes;
   }
 
-  /** find all customers. */
+  /** return full name of the customer */
+  fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
 
+  /** find all customers. */
   static async all() {
     const results = await db.query(
       `SELECT id, 
@@ -30,7 +33,6 @@ class Customer {
   }
 
   /** get a customer by ID. */
-
   static async get(id) {
     const results = await db.query(
       `SELECT id, 
